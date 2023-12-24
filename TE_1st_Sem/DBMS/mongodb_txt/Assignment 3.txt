@@ -1,0 +1,39 @@
+-- Assignment 3
+
+db.createCollection("books")
+
+db.books.insert({title:"dbms",description:"sql",by:"korth",url:"www.dbms.com",tags:"a",likes:20})
+db.books.insert({title:"dbms",description:"nosql",by:"jhon",url:"www.dbms123.com",tags:"a",likes:50})
+db.books.insert({title:"nosql",description:"mongo_nosql",by:"jhon",url:"www.rdbms.com",tags:"b",likes:150})
+db.books.insert({title:"mongo-nosql",description:"mongo_nosql",by:"jhon",url:"www.nosql.com",tags:"b",likes:250})
+
+--Find the numbers of books published by Jhon.
+
+db.books.aggregate([{$match:{by:"jhon"}},{$group:{_id:null,count:{$sum:1}}}])
+db.books.find().pretty()
+
+-- Find the books which have minimum likes and maximum likes published by Jhon.
+
+db.books.aggregate([{$match:{by:"jhon"}},{$group:{_id:"$by",min_likes:{$min:"$likes"}}}]) 
+db.books.aggregate([{$match:{by:"jhon"}},{$group:{_id:"$by",max_likes:{$max:"$likes"}}}]) 
+
+
+--Find the average number of likes of the book published by Jhon.
+
+db.books.aggregate([{$match:{by:"jhon"}},{$group:{_id:"$by",avg_likes:{$avg:"$likes"}}}]) 
+
+
+--]Find the first and last book published by Jhon.
+db.books.aggregate([{$match:{by:"jhon"}},{$group:{_id:"$by",first_author:{$first:"$by"}}}]) 
+
+db.books.aggregate([{$match:{by:"jhon"}},{$group:{_id:"$by",last_author:{$last:"$title"}}}]) 
+
+
+-- Create an Index on author name
+db.books.ensureIndex({"by":1}) 
+db.books.getIndexes() 
+
+
+--Display the books published by Jhon and check if it is uses the index which we have created.
+db.books.find({by:"jhon"}).pretty()
+
