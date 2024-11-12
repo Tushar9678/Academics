@@ -1,0 +1,167 @@
+------------------Salesforce apex programas-------------------
+
+1) Linear Search
+
+public class LinearSearch {
+    public static void demo(Integer key){
+        system.debug('Linear Search');
+        integer s = -1;
+        List<integer> lon = new List<Integer>();
+        lon.add(3);
+        lon.add(4);
+        lon.add(5);
+        lon.add(6);
+        system.debug('List:'+lon);
+        for(integer i=0; i<lon.size(); i++){
+            if(key == lon[i]){
+                s=1;
+            }
+        }
+        if(s==1){
+            System.debug('Element Found');
+        }
+        else{
+            System.debug('Element not Found');
+        }
+    }
+
+}
+
+//LinearSearch.demo(3);
+
+----------------------------------------------------------------------------------
+
+2) Minmax
+
+public class MinMaxFinder {
+    public static void findMinMax(Integer[] arr) {
+        if(arr == null || arr.size() == 0) {
+            System.debug('Array is empty');
+            return;
+        }
+        
+        Integer min = arr[0];
+        Integer max = arr[0];
+        
+        for(Integer num : arr) {
+            if(num < min) {
+                min = num;
+            }
+            if(num > max) {
+                max = num;
+            }
+        }
+        
+        System.debug('Minimum number: ' + min);
+        System.debug('Maximum number: ' + max);
+    }
+
+}
+
+//Integer[] numbers = new Integer[]{5, 2, 9, 1, 7};
+//MinMaxFinder.findMinMax(numbers);
+
+--------------------------------------------------------------------------------
+
+3) positive negative
+
+public class PositiveNegative {
+    public static String checkNumber(Integer numToCheck) {
+        if (numToCheck > 0) {
+            return 'Positive';
+        } else if (numToCheck < 0) {
+            return 'Negative';
+        } else {
+            return 'Zero';
+        }
+    }
+}
+
+//Integer numToCheck = 10;
+//System.debug(PositiveNegative.checkNumber(numToCheck));
+
+---------------------------------------------------------------------------------
+
+4) odd-even
+
+public class EvenOdd {
+    public static void identifyEvenOdd(Integer num) {
+        if(Math.Mod(num, 2) == 0) {
+            System.debug(num + ' is even');
+        } else {
+            System.debug(num + ' is odd');
+        }
+    }
+}
+//EvenOdd.identifyEvenOdd(2);
+
+----------------------------------------------------------------------------------
+
+5)sort number
+
+public class NumberSorter {
+    public static void sortNumbers() {
+        // Create an array of integers
+        Integer[] numbers = new Integer[]{5, 8, 2, 10, 1, 6, 3, 9, 7, 4};
+        
+        // Sort the array
+        numbers.sort();
+        
+        // Display the sorted array
+        System.debug('Sorted Numbers: ' + numbers);
+    }
+}
+
+//NumberSorter.sortNumbers();
+
+----------------------------------------------------------------------------------
+6) fibonacci
+
+public class FibonacciSeries {
+    public static void printFibonacci(Integer n) {
+        Integer a = 0, b = 1;
+        System.debug('Fibonacci Series:');
+        System.debug(a); // Print first Fibonacci number
+        
+        for (Integer i = 2; i < n; i++) {
+            Integer next = a + b;
+            System.debug(next); // Print next Fibonacci number
+            a = b;
+            b = next;
+        }
+    }
+}
+
+//FibonacciSeries.printFibonacci(10);
+
+----------------------------------------------------------------------------------
+
+7) public class Arithmetic {
+     public static void main() {
+        Integer num1 = 10; 
+        Integer num2 = 5; 
+
+        // Addition
+        Integer sum = num1 + num2;
+        System.debug('Sum: ' + sum);
+
+        // Subtraction
+        Integer difference = num1 - num2;
+        System.debug('Difference: ' + difference);
+
+        // Multiplication
+        Integer product = num1 * num2;
+        System.debug('Product: ' + product);
+
+        // Division 
+        if (num2 != 0) {
+            Decimal quotient = (Decimal) num1 / num2;
+            System.debug('Quotient: ' + quotient);
+        } else {
+            System.debug('Cannot divide by zero.');
+        }
+    }
+
+}
+
+//Arithmetic.main();
