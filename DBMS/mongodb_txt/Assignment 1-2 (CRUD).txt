@@ -1,0 +1,30 @@
+-- Assignment 1-2 (CRUD)
+
+--Create a data base table for student (rollno,sname,sadd,city,phone,birthdate).
+use mydb 
+db.createCollection("student")
+ 
+db.student.insert({rollno:"101",sname:"rahul",sadd:"ram nagar",city:"nashik",phone:"1234567",birthdate:"20-02-2017"})
+db.student.insert({rollno:"102",sname:"radhika",sadd:"sai nagar",city:"pune",phone:"12367867",birthdate:"21-03-2017"})
+db.student.insert({rollno:"103",sname:"arnav",sadd:"dadar",city:"mumbai",phone:"123678977",birthdate:"06-06-2017"})
+db.student.insert({rollno:"104",sname:"asta",sadd:"ram nagar",city:"nashik",phone:"1236789",birthdate:"06-07-2017"})
+
+db.student.find().pretty()
+
+-- Change the city of the student having rollno ‘103’ to ‘pune’.
+db.student.update({'rollno':'103'},{$set:{'city':'pune'}})  
+db.student.find().pretty()
+
+-- Display all the records of student.
+db.student.find().pretty()
+
+-- Remove student having ‘rollno’ = ‘101’.
+db.student.remove({'rollno':'101'})
+db.student.find().pretty()
+
+--Drop collection.
+db.student.drop()
+db.student.drop()
+
+-- Drop database.
+db.dropDatabase()
